@@ -82,17 +82,75 @@ rewards/
 | GET    | `/api/rewards/{customerId}/last-three-months` | Rewards for last 3 months |
 
 ### Example Response
+GET `/api/rewards/all`
+```json
+[
+    {
+        "customerId": 1,
+        "name": "Shalini",
+        "pointsByYear": {
+            "2025": {
+                "September": 25,
+                "August": 90
+            },
+            "2026": {
+                "September": 25,
+                "July": 200,
+                "August": 90
+            }
+        },
+        "totalPoints": 430
+    },
+    {
+        "customerId": 2,
+        "name": "Murali",
+        "pointsByYear": {
+            "2025": {
+                "October": 250,
+                "July": 90
+            },
+            "2026": {
+                "September": 550,
+                "August": 450
+            }
+        },
+        "totalPoints": 1340
+    }
+]
+```
+
+GET `/api/rewards/1`
 ```json
 {
   "customerId": 1,
   "name": "Shalini",
   "pointsByYear": {
+    "2025": {
+      "September": 25,
+      "August": 90
+    },
     "2026": {
-      "September": 90,
-      "October": 40
+      "September": 25,
+      "August": 90
     }
   },
-  "totalPoints": 130
+  "totalPoints": 230
+}
+```
+
+GET `/api/rewards/2/last-three-months`
+
+```json
+{
+  "customerId": 2,
+  "name": "Murali",
+  "pointsByYear": {
+    "2026": {
+      "September": 550,
+      "August": 450
+    }
+  },
+  "totalPoints": 1000
 }
 ```
 
@@ -100,7 +158,7 @@ rewards/
 ```json
 {
   "status": 404,
-  "message": "Customer not found"
+  "message": "Customer with ID 3 has no transactions"
 }
 ```
 
